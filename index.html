@@ -1,17 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trivia Game</title>
-    <link rel="stylesheet" type="text/css" href="styles.css"> 
-</head>
-<body>
-    <h1>Fun!</h1>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body style="background-image:url('trivia-bright-1307907411-170667a.png'); opacity:0.8;">
+    <h1>TRIVIA Fun!</h1>
     <div id="game"></div>
+    <div class="container" class="hide">
+        <div id="question-container" class="hide">
+            <button id="question-btn" value="easy">Easy</button>
+            <!-- <button id="medium-btn" value="medium">Medium</button>
+            <button id="hard-btn" value="hard">Hard</button> -->
+        </div>
+        <div id="answer-buttons" class="btn-grid">
+            <button class="btn">Answer 1</button>
+            <button class="btn">Answer 2</button>
+            <button class="btn">Answer 3</button>
+            <button class="btn">Answer 4</button>
+        </div>
+        <!-- <div id="controls"> -->
+            <!-- <button id="start-btn" class="start-btn btn">Start</button>
+            <button id="next-btn" class="next-btn btn">Next</button> -->
+            <!--  hit difficulty button [ easy, medium, hard] to go to next question -->
+        <!-- </div> -->
+    </div>
+
     <h2>Score:<span id="score">0</span></h2>
-    
+
     <script src="scripts.js"></script>
 </body>
 </html>

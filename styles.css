@@ -7,8 +7,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-
+    flex-direction: column; 
+    /*flex-direction aligns the Trivia and score in a column */
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.8;
 }
 
 .genre-column {
@@ -16,9 +19,9 @@ body {
     flex-direction: column;
     text-align: center;
 }
-.card {
-    width: 200px;
-    height: 120px;
+/* .container {
+    width: 800px;
+    height: 420px;
     border-radius:20px;
     background-color: aqua;
     border: solid yellow 5px;
@@ -26,10 +29,11 @@ body {
     padding: 5px;
     margin:10px;  
     font-size:100px;
-}
+} */
 
 #game {
     display: flex;
+    flex-direction: column;
 }
 .correct-answer {
 background-color: coral;
@@ -46,3 +50,54 @@ false-button {
 button {
     margin: 5px;
 }
+question-btn {
+    background-color: #652ebf;
+    text-align: center;
+    padding: 5px;
+    margin:10px;  
+
+}
+
+.medium-btn {
+    width: 200px;
+    height: 120px;
+    border-radius:20px;
+    background-color: aqua;
+    border: solid rgb(0, 255, 13) 5px;
+    text-align: center;
+    padding: 5px;
+    margin:10px;  
+    font-size:100px;
+}
+
+.hard-btn {
+    width: 200px;
+    height: 120px;
+    border-radius:20px;
+    background-color: rgb(201, 131, 25);
+    border: solid rgb(219, 121, 56) 5px;
+    text-align: center;
+    padding: 5px;
+    margin:10px;  
+    font-size:100px;
+}
+
+.btn-grid {
+display: grid;
+grid-template-columns: repeat(2, auto);
+gap:3px;
+margin:0;
+border-radius: 10px solid white;
+padding:1px 1px;
+}
+
+.btn-hover {
+    border-color: black;
+}
+.btn-correct {
+    color: green
+}
+.btn-incorrect {
+    color:red;
+}
+
