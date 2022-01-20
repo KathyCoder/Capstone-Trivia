@@ -1,45 +1,42 @@
 const game = document.getElementById('game')
 const scoreDisplay = document.getElementById('score')
 const easyButton = document.getElementById('question-btn')
+const answerSpot = document.getElementById("myFormAnswer");
+let currentQuestion = 0
+
 // const questionContainer = document.getElementById('question-container')
 // let shuffledQuestions, currentQuestionIndex, currentQuestion
 
 let gameObject = {}
 let score = 0 
-const film = 12 // REMOVING THIS BREAKS THE CARD! SEE NOTE ON LINE 29 COLUMN INNERHTML
-const levels = ["easy", "medium", "hard"] // this will replace the difficulty in fetch
-const genres = () => { [
-    {
-        name:'Film',
-        id: 11, 
-    },
-    {
-        name:'Books',
-        id: 10,
-    },
-    {
-        name:'Music',
-        id: 12,
-    },
-    {
-        name:'Video Games',
-        id: 15,
-    }
-] }
+// const film = 12 // REMOVING THIS BREAKS THE CARD! SEE NOTE ON LINE 29 COLUMN INNERHTML
+// const levels = ["easy", "medium", "hard"] // this will replace the difficulty in fetch
+// const genres = () => { [
+//     {
+//         name:'Film',
+//         id: 11, 
+//
+//     },
+//     {
+//         name:'Books',
+//         id: 10,
+//     },
+//     {
+//         name:'Music',
+//         id: 12,
+//     },
+//     {
+//         name:'Video Games',
+//         id: 15,
+//     }
+// ] }
 
-// function addGenre(genre) { // NOTE WITH GENRE IN THIS FUNCTION UNDEFINED SHOWS UP??!
-    //NOTE genres BREAKS THE CARD AND ITS NEVER READ
     const column = document.createElement('div')
-    column.classList.add('genre-column')
-    column.innerHTML = "GENRE" // NOTE:typing HERE overrides line 4 & 36 FILM -11
-game.append(column) // STICKS THE COLUMN TO THE GAME DIV
-// genre.forEach(genre =>addGenre(film, genre)) // SYNTAX ERROR THIS IS NOT A FUNCTION
-//WHEN THIS IS IN THE addGenre function - THE SCORE DOES NOT SHOW UP!!!!!!!!
-//BECZ IT IS COMMENTED OUT NOW = THE DIV CARD WITH THE SCORE SHOWS UP!!
-// return column
-// }
+    column.classList.add('genre-column') //KEEP THIS
+    column.innerHTML = "GENRE" // KEEP THIS
+    game.append(column) // STICKS THE COLUMN TO THE GAME DIV
 // const column = addGenre(film) // assign retun value 
-// NOTE TO SELF...FOR SOME REASON THIS BREAKS THE CARD (DIV.GENRE & CARD DISAPPEARS) 
+
 
 // levels.forEach(level => {  // FOR EACH LOOP ADDS EACH CARD LEVEL
     const card = document.createElement('div')// CREATES EACH CARD-LEVELS OF DIFFICULTY
@@ -49,16 +46,9 @@ game.append(column) // STICKS THE COLUMN TO THE GAME DIV
     // if (level === 'easy') {
     //     card.innerHTML = 1
     // }
-        
-    // if (level === 'medium') {
-    //     card.innerHTML = 2
-    // }
-        
-    // if (level === 'hard') {
-    //         card.innerHTML = 3
-    // }
+
  easyButton.addEventListener('click', function(e) {
-fetch(`https://opentdb.com/api.php?amount=5&category=11&difficulty=${easyButton.value}&type=multiple`)
+fetch(`https://opentdb.com/api.php?amount=5&difficulty=${easyButton.value}&type=multiple`)
     .then(response => response.json())
     .then(data => {
         console.log(data)
@@ -66,76 +56,72 @@ fetch(`https://opentdb.com/api.php?amount=5&category=11&difficulty=${easyButton.
         //gameObject brings in all data from fetch by difficulty
         column.innerHTML = data.results[0].category // NOTE:typing HERE overrides line 4 & 36 FILM -11
         card.innerHTML= data.results[0].question
-        card.setAttribute('data-answer', data.results[0].correct_answer)
+        // answerSpot.innerHTML=data.results[0].correct_answer
         // card.setAttribute('data-value', card.getInnerHTML()) ASSIGNS VALUE (SCORE)
      })
     //  .then (done => card.addEventListener('click', flipCard))
     //  card.addEventListener('click', flipCard)
 }) 
-// mediumButton.addEventListener('click', function(e) {
-//     fetch(`https://opentdb.com/api.php?amount=10&difficulty=${mediumButton.value}&type=multiple`)
-//         .then(response => response.json())
-//         .then(data => {
-//             console.log(data)
-//             gameObject=data //NOTE outside this function data will NOT be accessible
-//             //gameObject brings in all data from fetch by difficulty
-//             card.innerHTML= data.results[0].question
-//             card.setAttribute('data-answer', data.results[0].correct_answer)
-//             // card.setAttribute('data-value', card.getInnerHTML()) ASSIGNS SCORE (VALUE)
-//          })
-//         //  .then (done => card.addeventlistner('click', 'flipCard'))
-//         //  card.addEventListener("click, flipCard")
-//     }) 
-//     hardButton.addEventListener('click', function(e) {
-//         fetch(`https://opentdb.com/api.php?amount=10&difficulty=${hardButton.value}&type=multiple`)
-//             .then(response => response.json())
-//             .then(data => {
-//                 console.log(data)
-//                 gameObject=data //NOTE outside this function data will NOT be accessible
-//                 //gameObject brings in all data from fetch by difficulty
-//                 card.innerHTML= data.results[0].question
-//                 card.setAttribute('data-answer', data.results[0].correct_answer)
-//                 // card.setAttribute('data-value', card.getInnerHTML())
-//              })
-//             //  .then (done => card.addeventlistner('click', 'flipCard'))
-//             //  card.addEventListener("click, flipCard")
-//         }) 
+
+function checkAnswerFunction() {
+    let userAnswer = document.getElementById("myFormInput").value;
+    console.log(userAnswer)
+    if (userAnswer === gameObject.results[currentQuestion].correct_answer) {
+        console.log("You are correct!") 
+        score +=1 
+        scoreDisplay.innerHTML= score
+        currentQuestion += 1
+        if (currentQuestion >= gameObject.results.length) {
+        checkEndGame() }
+        else {
+        displayQuestion()
+        }
+        document.getElementById("myFormInput").value = ""
+    } else {
+        console.log("Try again!")
+        answerSpot.innerHTML=gameObject.results[currentQuestion].correct_answer
+
+    } } 
+
+function displayQuestion(){
+    column.innerHTML = gameObject.results[currentQuestion].category // NOTE:typing HERE overrides line 4 & 36 FILM -11
+    card.innerHTML= gameObject.results[currentQuestion].question
+
+}
+
+function checkEndGame() {
+// if (currentQuestion > gameObject.results.length) {
+let winBox =document.createElement("div")
+let winPic = document.createElement("img")
+    winPic.src="./success.gif"
+    winBox.append(winPic)
+    document.body.append(winBox)
+
+
+}
+  // NOTE populate Correct Answer input box in the form with 
+  //Array.from gameObject.results[0].correct_answer
     
-    function selectAnswer(e) {
-        const selectedButton = e.target
-        const correct = selectedButton.gameObject.results[0].correct_answer
-        setStatusClass(document.body, correct_answer)
-        Array.from(answerButtonsElement.children).forEach(button => {
-            setStatusClass(button, button.gameObject.results[0].correct_answer)
-        }) //Note to self - check this to make sure it pulls from gameObject
-    }
+    // function selectAnswer(e) {
+    //     const selectedButton = e.target
+    //     const correct = selectedButton.gameObject.results[0].correct_answer
+    //     setStatusClass(document.body, correct_answer)
+    //     Array.from(answerButtonsElement.children).forEach(button => {
+    //         setStatusClass(button, button.gameObject.results[0].correct_answer)
+    //     }) //Note to self - check this to make sure it pulls from gameObject
+    // }
 
     // function setStatusClass(element, correct_answer) {
     //     clearStatusClass(element)
     // }
-function flipCard(){
-    this.innerHTML = ''
-    this.style.fontSize = '15px';
-    const textDisplay = document.createElement('div');
-    const trueButton = document.createElement('button')
-    const falseButton = document.createElement('button')
-    trueButton.innerHTML= 'true-button'
-    falseButton.innerHTML= 'false-button'
-    trueButton.classList.add('true-button')
-    falseButton.classList.add('false-button')
-    trueButton.addEventListener('click',getResult)
-    falseButton.addEventListener('click',getResult)
-    textDisplay.innerHTML = this.getAttribute('data-question')
-    this.append(textDisplay, trueButton, falseButton)
-   }
 
  const allCards = Array.from(document.querySelectorAll('.card'))
 //  allCards.forEach(card).removeEventListener('click', 'flipCard')
 //REFERENCE ERROR CARD IS NOT DEFINED
  
  function getResult() {
-    const allCards = Array.from(document.querySelectorAll('.card'))
-    allCards.forEach(card => card.addEventListener('click', 'flipcard'))
+    // const allCards = Array.from(document.querySelectorAll('.card'))
+    // allCards.forEach(card => card.addEventListener('click', 'flipcard'))
 
      const cardOfButton = this.parentElement
      if(cardOfButton.getAttribute(data-answer) === this.innerHTML){

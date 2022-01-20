@@ -7,21 +7,40 @@
     <title>Trivia Game</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
-  <body style="background-image:url('trivia-bright-1307907411-170667a.png'); opacity:0.8;">
+  <body id="container">
+      <!-- style="background-image:url('trivia-bright-1307907411-170667a.png');" -->
     <h1>TRIVIA Fun!</h1>
+    <br/>
     <div id="game"></div>
-    <div class="container" class="hide">
+    <br/>
+    <div class="container2" class="hide">
+        <br/>
         <div id="question-container" class="hide">
+            <span>
+                Start the Trivia Fun!
+            </span>
+
             <button id="question-btn" value="easy">Easy</button>
-            <!-- <button id="medium-btn" value="medium">Medium</button>
-            <button id="hard-btn" value="hard">Hard</button> -->
+
         </div>
-        <div id="answer-buttons" class="btn-grid">
+
+<br/>
+        <form >
+ Your Input here: <input id="myFormInput" type="text" name="fname">
+            <input type="button" onclick="checkAnswerFunction()" value ="submit" >
+          </form>
+
+<br/>   
+          <div id="myFormAnswer">
+            Correct Answer:
+          </div>
+
+        <!-- <div id="answer-buttons" class="btn-grid">
             <button class="btn">Answer 1</button>
             <button class="btn">Answer 2</button>
             <button class="btn">Answer 3</button>
             <button class="btn">Answer 4</button>
-        </div>
+        </div> -->
         <!-- <div id="controls"> -->
             <!-- <button id="start-btn" class="start-btn btn">Start</button>
             <button id="next-btn" class="next-btn btn">Next</button> -->
