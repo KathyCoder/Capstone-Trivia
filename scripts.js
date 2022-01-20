@@ -72,7 +72,9 @@ function checkAnswerFunction() {
         scoreDisplay.innerHTML= score
         currentQuestion += 1
         if (currentQuestion >= gameObject.results.length) {
-        checkEndGame() }
+        document.body.innerHTML=""
+        checkEndGame()
+    }
         else {
         displayQuestion()
         }
@@ -80,7 +82,8 @@ function checkAnswerFunction() {
     } else {
         console.log("Try again!")
         answerSpot.innerHTML=gameObject.results[currentQuestion].correct_answer
-
+        checkLose()
+        setTimeout(() => {window.location.reload()}, 5000);
     } } 
 
 function displayQuestion(){
@@ -96,24 +99,17 @@ let winPic = document.createElement("img")
     winPic.src="./success.gif"
     winBox.append(winPic)
     document.body.append(winBox)
-
-
+}
+function checkLose() {
+let mehBox =document.createElement("div")
+let mehPic = document.createElement("img")
+    mehPic.src="./success.gif"//NOte to self change this to losing gif call check meh
+    mehBox.append(mehPic)
+    document.body.append(mehBox)
 }
   // NOTE populate Correct Answer input box in the form with 
   //Array.from gameObject.results[0].correct_answer
     
-    // function selectAnswer(e) {
-    //     const selectedButton = e.target
-    //     const correct = selectedButton.gameObject.results[0].correct_answer
-    //     setStatusClass(document.body, correct_answer)
-    //     Array.from(answerButtonsElement.children).forEach(button => {
-    //         setStatusClass(button, button.gameObject.results[0].correct_answer)
-    //     }) //Note to self - check this to make sure it pulls from gameObject
-    // }
-
-    // function setStatusClass(element, correct_answer) {
-    //     clearStatusClass(element)
-    // }
 
  const allCards = Array.from(document.querySelectorAll('.card'))
 //  allCards.forEach(card).removeEventListener('click', 'flipCard')
