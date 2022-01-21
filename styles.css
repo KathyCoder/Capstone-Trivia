@@ -1,9 +1,11 @@
 body {
-    margin: 0;
+    margin: 20;
     padding: 0;
-    background-color: #652ebf;
-    color: #fff;
+    /* background-color: #652ebf; */
+    color: black;
     font-family: Trebuchet MS, Arial;
+    font-weight: bold;
+    font-size:20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,11 +13,11 @@ body {
     /*flex-direction aligns the Trivia and score in a column */
     background-repeat: no-repeat;
     background-size: cover;
-    opacity: 0.8;
-}
+} 
 
 .genre-column {
     display: flex;
     flex-direction: column;
     text-align: center;
+    color: Black;
 }

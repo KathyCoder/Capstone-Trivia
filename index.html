@@ -7,49 +7,39 @@
     <title>Trivia Game</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
-  <body id="container">
-      <!-- style="background-image:url('trivia-bright-1307907411-170667a.png');" -->
-    <h1>TRIVIA Fun!</h1>
+  <div id="wrapper">
+  <body id="container" style="background-image:url('palm-tree-on-the-beach-1145474071-170667a.jpg');">
+    <br/>
+    <h1>Trivia Fun!</h1> <h1>Score:<span id="score"> 0 / 5</span></h1>
+
+    <h2>Click Easy to start...</h2>
+    <br/>
+    <br/>
+    <div id="question-container" style="font-size:15pt; height:30px; width:80px;"class="hide">
+      <div class="question-displayed">
+      <button id="question-btn" style="font-size:15pt; height:30px; width:80px;" value="easy">Easy</button>
+      <br/>
+      <br/>
+      <br/>
+      </div>
+      <br>
+    </div>
     <br/>
     <div id="game"></div>
-    <br/>
-    <div class="container2" class="hide">
-        <br/>
-        <div id="question-container" class="hide">
-            <span>
-                Start the Trivia Fun!
-            </span>
-
-            <button id="question-btn" value="easy">Easy</button>
-
-        </div>
-
-<br/>
+      <div id="genre-column" class="hide">
         <form >
- Your Input here: <input id="myFormInput" type="text" name="fname">
-            <input type="button" onclick="checkAnswerFunction()" value ="submit" >
+          <br/>
+ Your Input here: <input id="myFormInput" type="text" style="font-size:15pt; height:30px; width:280px;" name="fname">
+            <input type="button" onclick="checkAnswerFunction()" style="font-size:15pt; height:30px; width:80px;" value ="Submit" >
+<br/>
+<br/>
           </form>
-
-<br/>   
           <div id="myFormAnswer">
             Correct Answer:
           </div>
-
-        <!-- <div id="answer-buttons" class="btn-grid">
-            <button class="btn">Answer 1</button>
-            <button class="btn">Answer 2</button>
-            <button class="btn">Answer 3</button>
-            <button class="btn">Answer 4</button>
-        </div> -->
-        <!-- <div id="controls"> -->
-            <!-- <button id="start-btn" class="start-btn btn">Start</button>
-            <button id="next-btn" class="next-btn btn">Next</button> -->
-            <!--  hit difficulty button [ easy, medium, hard] to go to next question -->
-        <!-- </div> -->
     </div>
-
-    <h2>Score:<span id="score">0</span></h2>
 
     <script src="scripts.js"></script>
 </body>
+</div>
 </html>
